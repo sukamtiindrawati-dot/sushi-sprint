@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sushi Sprint — a sushi-bar rush game</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1>🍣 Sushi Sprint</h1>
+    <div class="hud">
+      <div class="stat">Score <b id="score">0</b></div>
+      <div class="stat">Combo <b id="combo">x1</b></div>
+      <div class="stat">Served <b id="served">0</b></div>
+      <div class="stat">Time <b id="time">2:00</b></div>
+      <button id="muteBtn" title="Sound on/off">Sound</button>
+    </div>
+  </header>
+
+  <section id="orders">
+    <h2>Order Board</h2>
+    <div id="orderSlots"></div>
+  </section>
+
+  <main>
+    <section id="counter">
+      <h2>Counter — click to add to plate</h2>
+      <div class="stations">
+        <button class="station" id="stRice" data-ing="rice">
+          <span class="ing-icon rice-icon" aria-hidden="true"></span>
+          <span class="ing-name">Rice</span>
+          <span class="ing-sub" id="riceSub">Cooker idle — click to cook</span>
+        </button>
+        <button class="station" id="stNori" data-ing="nori">
+          <span class="ing-icon nori-icon" aria-hidden="true"></span>
+          <span class="ing-name">Nori</span>
+          <span class="ing-sub">Seaweed sheets</span>
+        </button>
+        <button class="station" id="stSalmon" data-ing="salmon">
+          <span class="ing-icon salmon-icon" aria-hidden="true"></span>
+          <span class="ing-name">Salmon</span>
+          <span class="ing-sub" id="salmonSub">Stock: 3</span>
+        </button>
+        <button class="station" id="stTuna" data-ing="tuna">
+          <span class="ing-icon tuna-icon" aria-hidden="true"></span>
+          <span class="ing-name">Tuna</span>
+          <span class="ing-sub" id="tunaSub">Stock: 3</span>
+        </button>
+        <button class="station" id="stTamago" data-ing="tamago">
+          <span class="ing-icon tamago-icon" aria-hidden="true"></span>
+          <span class="ing-name">Tamago</span>
+          <span class="ing-sub" id="tamagoSub">Stock: 3</span>
+        </button>
+      </div>
+      <p class="hint">Rice must cook first (3s). Fish stocks refill over time. Click a plate item to remove it.</p>
+    </section>
+
+    <section id="plateArea">
+      <h2>Assembly Plate</h2>
+      <div id="plate"></div>
+      <div class="plate-actions">
+        <button id="serveBtn">Serve</button>
+        <button id="clearBtn">Clear plate</button>
+      </div>
+      <p id="message" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <div id="startOverlay" class="overlay">
+    <div class="card">
+      <h2>🍣 Sushi Sprint</h2>
+      <p>The lunch rush is on! Take orders from the board, cook rice, slice fish,
+      roll the maki on your plate and serve it before the customer's patience runs out.</p>
+      <ul>
+        <li>Click a station to add its ingredient to the plate.</li>
+        <li>Rice takes 3 seconds to cook — click the cooker, wait, click again.</li>
+        <li>Serve only when the plate matches an order exactly. A wrong serve costs 30 points.</li>
+        <li>Serve in a row to build your combo multiplier. Shift lasts 2 minutes.</li>
+      </ul>
+      <button id="startBtn">Start Shift ▶</button>
+    </div>
+  </div>
+
+  <div id="endOverlay" class="overlay hidden">
+    <div class="card">
+      <h2>Shift Over!</h2>
+      <p>Final score: <b id="finalScore">0</b></p>
+      <p>Orders served: <b id="finalServed">0</b> · Orders lost: <b id="finalLost">0</b></p>
+      <p>Best combo: <b id="finalCombo">x1</b></p>
+      <button id="againBtn">Play Again ↻</button>
+    </div>
+  </div>
+
+  <div id="testlog" style="display:none"></div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
